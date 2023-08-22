@@ -38,6 +38,6 @@ jobs:
         scp -i private_key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null target/release/${{ env.RUST_BINARY_NAME }} ec2-user@3.81.80.6:${{ env.DEPLOY_PATH }}
         
         # 서버 다시 시작
-        ssh -i private_key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ec2-user@3.81.80.6 'nohup ${{ env.DEPLOY_PATH }}/${{ env.RUST_BINARY_NAME }} > /dev/null 2>&1 &'
+        ssh -i private_key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ec2-user@3.81.80.6 'sudo nohup ${{ env.DEPLOY_PATH }}/${{ env.RUST_BINARY_NAME }} > /dev/null 2>&1 &'
 
         rm -f private_key.pem
